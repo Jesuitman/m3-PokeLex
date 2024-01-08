@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 }
+.App {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center;
+  text-align: center;
+}
+
+header {
+  width: 100%;
+  background-color: #282c34;
+  color: white;
+  padding: 10px 0;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px; /* Adjust as needed for spacing */
+}
+
+.pokemon-details {
+  width: 300px; /* Adjust width as needed */
+  margin-right: 20px; /* Adjust margin between sections */
+}
+
+.list-container {
+  flex: 1;
+  /* Other styles for your list container */
+}

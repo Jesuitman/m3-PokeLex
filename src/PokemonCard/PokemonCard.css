@@ -1,13 +1,12 @@
-.pokemon-card {
-    position: absolute;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1;
-    display: none;
-  }
-  
-  .pokemon-card.active {
-    display: block;
+.pokemon-details {
+    position: fixed;
+    top: 50px; /* Adjust as needed for the distance from the top */
+    left: 20px; /* Adjust as needed for the distance from the left */
+    width: 300px;
+    background-color: white; /* Set a background color for better visibility */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 999; /* Ensure it's above other elements */
   }

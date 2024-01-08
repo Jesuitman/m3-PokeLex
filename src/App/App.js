@@ -21,7 +21,7 @@ function App() {
       </header>
       <div className="main-container">
         <div className="pokemon-details">
-          <h2>Selected Pokemon</h2>
+          <h2></h2>
           {selectedPokemon && <PokemonCard pokemon={selectedPokemon} onClose={handleCloseCard} />}
         </div>
         <div className="list-container">
