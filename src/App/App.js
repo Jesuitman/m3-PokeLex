@@ -17,14 +17,17 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* Your existing header content */}
+        <h1>PokéLex</h1>
       </header>
-      <List onPokemonClick={handlePokemonClick} />
-      {selectedPokemon && (
+      <div className="main-container">
         <div className="pokemon-details">
-          <PokemonCard pokemon={selectedPokemon} onClose={handleCloseCard} />
+          <h2>Selected Pokemon</h2>
+          {selectedPokemon && <PokemonCard pokemon={selectedPokemon} onClose={handleCloseCard} />}
         </div>
-      )}
+        <div className="list-container">
+          <List onPokemonClick={handlePokemonClick} />
+        </div>
+      </div>
     </div>
   );
 }

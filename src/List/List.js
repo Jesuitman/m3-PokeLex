@@ -42,7 +42,7 @@ function List({ onPokemonClick }) {
 
   return (
     <div className="list-container">
-      <h2>PokéLex</h2>
+      {/* <h2>PokéLex</h2> */}
       <div className="pokemon-grid">
         {pokemonData.map((pokemon, index) => (
           <button

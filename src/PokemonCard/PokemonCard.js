@@ -1,15 +1,24 @@
 import React from 'react';
 import './PokemonCard.css';
 
+
 function PokemonCard({ pokemon, onClose }) {
   return (
-    <div className="pokemon-card">
+    <div className="pokemon-details">
       <button className="close-button" onClick={onClose}>
         Close
       </button>
-      <h3>{pokemon.name}</h3>
-      <p>Ability: {pokemon.abilities[0].ability.name}</p>
-      <p>Type: {pokemon.types[0].type.name}</p>
+      <h2>{pokemon.name}</h2>
+      <p>Type: {pokemon.types.map(type => type.type.name).join(', ')}</p>
+      <p>Abilities:</p>
+      <ul>
+        {pokemon.abilities.map((ability, index) => (
+          <li key={index}>{ability.ability.name}</li>
+        ))}
+      </ul>
+      <button onClick={() => console.log("Add to team")}>
+        Add to Team
+      </button>
     </div>
   );
 }
