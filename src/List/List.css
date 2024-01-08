@@ -1,0 +1,27 @@
+.list-container {
+    max-width: 800px; /* Adjust as needed */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style for the Pokémon grid */
+  .pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 10 Pokémon per row */
+    gap: 10px; /* Adjust spacing between Pokémon */
+  }
+  
+  /* Style for each Pokémon item */
+  .pokemon-item {
+    padding: 5px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .pokemon-item img {
+    max-width: 100%; /* Ensure images fit within their containers */
+  }

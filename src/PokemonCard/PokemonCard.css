@@ -1,0 +1,13 @@
+.pokemon-card {
+    position: absolute;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    display: none;
+  }
+  
+  .pokemon-card.active {
+    display: block;
+  }
