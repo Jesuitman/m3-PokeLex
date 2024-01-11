@@ -1,0 +1,42 @@
+.team-section {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .team-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .team-member {
+    width: calc(33.33% - 20px); /* Adjust the width of each box */
+    /* margin: 10px; */
+    position: relative;
+  }
+  
+  .team-member p {
+    margin: 0;
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .team-member p:hover {
+    border: 1px solid #000; /* Change border color on hover */
+    cursor: pointer;
+  }
+  
+  .team-member-sprite {
+    width: 100px; /* Adjust the size of the image */
+    height: 100px; /* Adjust the size of the image */
+    display: block;
+    margin: 0 auto;
+  }
