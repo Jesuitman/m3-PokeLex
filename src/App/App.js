@@ -7,13 +7,10 @@ import TeamDisplay from '../TeamDisplay/TeamDisplay';
 function App() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [team, setTeam] = useState(Array(6).fill(null));
+  const [selectedGeneration, setSelectedGeneration] = useState('Kanto');
 
   const handlePokemonClick = (pokemonDetails) => {
     setSelectedPokemon(pokemonDetails);
-  };
-
-  const handleCloseCard = () => {
-    setSelectedPokemon(null);
   };
 
   const handleAddToTeam = (selectedPokemon) => {
@@ -36,30 +33,34 @@ function App() {
     setTeam(updatedTeam);
   };
 
+  const handleGenerationChange = (generation) => {
+    setSelectedGeneration(generation);
+  };
+
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>PokéLex</h1>
-        <button className='gen-button'>Kanto</button>
-        <button className='gen-button'>Johto</button>
-        <button className='gen-button'>Hoenn</button>
-        <button className='gen-button'>Sinnoh</button>
-        <button className='gen-button'>Unova</button>
-        <button className='gen-button'>Kalos</button>
-        <button className='gen-button'>Alola</button>
-        <button className='gen-button'>Galar</button>
-        <button className='gen-button'>Paldea</button>
+        {['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'].map((generation) => (
+          <button
+            key={generation}
+            className='gen-button'
+            onClick={() => handleGenerationChange(generation)}
+          >
+            {generation}
+          </button>
+        ))}
         </header>
       <div className="main-container">
-        <div className="pokemon-details">
+        {/* <div className="pokemon-details">
           {selectedPokemon && (
             <PokemonCard pokemon={selectedPokemon} onClose={handleCloseCard} handleAddToTeam={handleAddToTeam} />
           )}
-        </div>
+        </div> */}
         <div className="list-container">
         <button className='gen-button' onClick={() => handleAddToTeam(selectedPokemon)}>Add to Team</button>
-        <List onPokemonClick={handlePokemonClick} />
-        </div>
+        <List onPokemonClick={handlePokemonClick} selectedGeneration={selectedGeneration} />        </div>
         <TeamDisplay team={team} handleRemoveFromTeam={handleRemoveFromTeam} />
       </div>
     </div>
@@ -67,3 +68,8 @@ function App() {
 }
 
 export default App;
+
+
+// make it so you clearyour team when you export it and an optiuon to clear whole team
+
+//hamburger menu with create custom team and creat team buttons
