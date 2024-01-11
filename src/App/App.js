@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import List from '../List/List';
 import PokemonCard from '../PokemonCard/PokemonCard';
-import TeamDisplay from '../TeamDisplay/TeamDisplay'; // Import the TeamDisplay component
+import TeamDisplay from '../TeamDisplay/TeamDisplay';
 
 function App() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
@@ -16,16 +16,16 @@ function App() {
     setSelectedPokemon(null);
   };
 
-  const handleAddToTeam = () => {
-    if (selectedPokemon) {
+  const handleAddToTeam = (pokemon) => {
+    if (pokemon) {
       const updatedTeam = [...team];
-      const emptySlotIndex = updatedTeam.findIndex(pokemon => pokemon === null);
+      const emptySlotIndex = updatedTeam.findIndex((p) => p === null);
       if (emptySlotIndex !== -1) {
-        updatedTeam[emptySlotIndex] = selectedPokemon;
+        updatedTeam[emptySlotIndex] = pokemon;
         setTeam(updatedTeam);
-        console.log(team)
+        console.log(updatedTeam);
       } else {
-        console.log("Your team is full. Remove a Pokemon to add a new one.");
+        console.log('Your team is full. Remove a Pokemon to add a new one.');
       }
     }
   };
@@ -49,11 +49,12 @@ function App() {
         <button className='gen-button'>Alola</button>
         <button className='gen-button'>Galar</button>
         <button className='gen-button'>Paldea</button>
-      </header>
+        </header>
       <div className="main-container">
         <div className="pokemon-details">
           {selectedPokemon && (
-            <PokemonCard pokemon={selectedPokemon} onClose={handleCloseCard} handleAddToTeam={() => handleAddToTeam(selectedPokemon)} /> )}
+            <PokemonCard pokemon={selectedPokemon} onClose={handleCloseCard} handleAddToTeam={handleAddToTeam} />
+          )}
         </div>
         <div className="list-container">
           <List onPokemonClick={handlePokemonClick} />

@@ -10,14 +10,14 @@
   }
   
   .team-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Set 3 columns */
+    grid-template-rows: repeat(2, auto); /* Set 2 rows */
+    gap: 20px;
     justify-content: center;
   }
   
   .team-member {
-    width: calc(33.33% - 20px); /* Adjust the width of each box */
-    /* margin: 10px; */
     position: relative;
   }
   
@@ -40,3 +40,4 @@
     display: block;
     margin: 0 auto;
   }
+

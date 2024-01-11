@@ -11,7 +11,7 @@ function TeamDisplay({ team, handleRemoveFromTeam }) {
             {member ? (
               <>
                 <img src={member.sprites.front_default} alt={member.name} className="team-member-sprite" />
-                <button onClick={() => handleRemoveFromTeam(index)}>Remove</button>
+                <button className='gen-button' onClick={() => handleRemoveFromTeam(index)}>Remove</button>
               </>
             ) : (
               <p>Empty</p>
