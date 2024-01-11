@@ -16,12 +16,12 @@ function App() {
     setSelectedPokemon(null);
   };
 
-  const handleAddToTeam = (pokemon) => {
-    if (pokemon) {
+  const handleAddToTeam = (selectedPokemon) => {
+    if (selectedPokemon) {
       const updatedTeam = [...team];
       const emptySlotIndex = updatedTeam.findIndex((p) => p === null);
       if (emptySlotIndex !== -1) {
-        updatedTeam[emptySlotIndex] = pokemon;
+        updatedTeam[emptySlotIndex] = selectedPokemon;
         setTeam(updatedTeam);
         console.log(updatedTeam);
       } else {
@@ -57,7 +57,8 @@ function App() {
           )}
         </div>
         <div className="list-container">
-          <List onPokemonClick={handlePokemonClick} />
+        <button className='gen-button' onClick={() => handleAddToTeam(selectedPokemon)}>Add to Team</button>
+        <List onPokemonClick={handlePokemonClick} />
         </div>
         <TeamDisplay team={team} handleRemoveFromTeam={handleRemoveFromTeam} />
       </div>
