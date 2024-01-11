@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import List from '../List/List';
 import PokemonCard from '../PokemonCard/PokemonCard';
@@ -34,40 +35,54 @@ function App() {
   };
 
   const handleGenerationChange = (generation) => {
-    setSelectedGeneration(generation);
+    setSelectedGeneration(generation.toLowerCase());
   };
-
+  
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>PokéLex</h1>
-        {['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'].map((generation) => (
-          <button
-            key={generation}
-            className='gen-button'
-            onClick={() => handleGenerationChange(generation)}
-          >
-            {generation}
-          </button>
-        ))}
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <h1>PokéLex</h1>
+          <Routes>
+            {['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'].map((generation) => (
+              <Route
+                key={generation}
+                path={`/${generation.toLowerCase()}`}
+                element={
+                  <Link
+                    to={`/${generation.toLowerCase()}`}
+                    className='gen-button'
+                    onClick={() => handleGenerationChange(generation)}
+                  >
+                    {generation}
+                  </Link>
+                }
+              />
+            ))}
+          </Routes>
         </header>
-      <div className="main-container">
-        {/* <div className="pokemon-details">
-          {selectedPokemon && (
-            <PokemonCard pokemon={selectedPokemon} onClose={handleCloseCard} handleAddToTeam={handleAddToTeam} />
-          )}
-        </div> */}
-        <div className="list-container">
-        <button className='gen-button' onClick={() => handleAddToTeam(selectedPokemon)}>Add to Team</button>
-        <List onPokemonClick={handlePokemonClick} selectedGeneration={selectedGeneration} />        </div>
-        <TeamDisplay team={team} handleRemoveFromTeam={handleRemoveFromTeam} />
+        <div className="main-container">
+          <Routes>
+            <Route
+              path={`/:generation`}
+              element={
+                <div className="list-container">
+                  <button className='gen-button' onClick={() => handleAddToTeam(selectedPokemon)}>Add to Team</button>
+                  <List onPokemonClick={handlePokemonClick} selectedGeneration={selectedGeneration} />
+                </div>
+              }
+            />
+          </Routes>
+          <TeamDisplay team={team} handleRemoveFromTeam={handleRemoveFromTeam} />
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
 export default App;
+
 
 
 // make it so you clearyour team when you export it and an optiuon to clear whole team
