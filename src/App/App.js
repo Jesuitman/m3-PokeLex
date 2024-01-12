@@ -50,13 +50,7 @@ function App() {
                 key={generation}
                 path={`/${generation.toLowerCase()}`}
                 element={
-                  <Link
-                    to={`/${generation.toLowerCase()}`}
-                    className='gen-button'
-                    onClick={() => handleGenerationChange(generation)}
-                  >
-                    {generation}
-                  </Link>
+                  <Link to={`/${generation.toLowerCase()}`} className='gen-button' onClick={() => handleGenerationChange(generation)}>{generation}</Link>
                 }
               />
             ))}
