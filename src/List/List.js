@@ -59,11 +59,11 @@ function List({ onPokemonClick, selectedGeneration }) {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${index + 1}/`);
     const pokemonDetails = await response.json();
     setSelectedPokemon(pokemonDetails);
-  
+
     // Check if onPokemonClick is defined before calling it
     onPokemonClick && onPokemonClick(pokemonDetails);
   };
-  
+
 
   const handleCloseCard = () => {
     setSelectedPokemon(null);

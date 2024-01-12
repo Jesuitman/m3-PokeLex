@@ -43,6 +43,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <button className='gen-button'>Teams</button>
         <h1>PokéLex</h1>
         {['All', 'Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'].map((generation) => (
           <button

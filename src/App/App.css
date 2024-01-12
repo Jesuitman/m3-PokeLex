@@ -52,9 +52,11 @@ header {
 
 .main-container {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
+  justify-content: space-around;
   align-items: center;
   margin-top: 20px;
+  
 }
 
 .pokemon-details {
@@ -64,6 +66,7 @@ header {
 
 .list-container {
   flex: 1;
+  max-width: 50%;
   /* Other styles for your list container */
 }
 
@@ -90,13 +93,13 @@ button:hover, .App-header button:hover {
 }
 
 .team-container {
-  position: fixed;
-  top: 50px; /* Adjust as needed for the distance from the top */
-  right: 20px; /* Adjust as needed for the distance from the left */
-  width: 250px;
-  background-color: white; /* Set a background color for better visibility */
+  width: 500px;
+  background-color: white;
   padding: 10px;
   border: .5rem solid #337cc1;
   border-radius: 3px;
-  z-index: 999; /* Ensure it's above other elements */
+  position: fixed;
+  top: 250px; 
+  right: 0px;
+  z-index: 999;
 }
