@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
+import '../styles.css'; // Import the CSS file
 import List from '../List/List';
 import PokemonCard from '../PokemonCard/PokemonCard';
 import TeamDisplay from '../TeamDisplay/TeamDisplay';
