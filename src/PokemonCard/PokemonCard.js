@@ -23,9 +23,6 @@ function PokemonCard({ pokemon, onClose }) {
       <ul>
         {pokemon.stats.map((stat, index) => (<li key={index}>{capitalizeFirstLetter(stat.stat.name)}: {stat.base_stat}</li>))}
       </ul>
-      <button className="gen-button" onClick={onClose}>
-        Close
-      </button>
     </div>
   );
 }

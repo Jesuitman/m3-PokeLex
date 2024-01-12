@@ -8,7 +8,7 @@ import TeamDisplay from '../TeamDisplay/TeamDisplay';
 function App() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [team, setTeam] = useState(Array(6).fill(null));
-  const [selectedGeneration, setSelectedGeneration] = useState('Kanto');
+  const [selectedGeneration, setSelectedGeneration] = useState('All');
 
   const handlePokemonClick = (pokemonDetails) => {
     setSelectedPokemon(pokemonDetails);
@@ -43,7 +43,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>PokéLex</h1>
-        {['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'].map((generation) => (
+        {['All', 'Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'].map((generation) => (
           <button
             key={generation}
             className='gen-button'
@@ -52,17 +52,15 @@ function App() {
             {generation}
           </button>
         ))}
-        </header>
+      </header>
       <div className="main-container">
-        {/* <div className="pokemon-details">
-          {selectedPokemon && (
-            <PokemonCard pokemon={selectedPokemon} onClose={handleCloseCard} handleAddToTeam={handleAddToTeam} />
-          )}
-        </div> */}
         <div className="list-container">
-        <button className='gen-button' onClick={() => handleAddToTeam(selectedPokemon)}>Add to Team</button>
-        <List onPokemonClick={handlePokemonClick} selectedGeneration={selectedGeneration} />        </div>
-        <TeamDisplay team={team} handleRemoveFromTeam={handleRemoveFromTeam} />
+          <List onPokemonClick={handlePokemonClick} selectedGeneration={selectedGeneration} />
+        </div>
+        <div className='team-container'>
+          <button className='gen-button' onClick={() => handleAddToTeam(selectedPokemon)}>Add to Team</button>
+          <TeamDisplay team={team} handleRemoveFromTeam={handleRemoveFromTeam} />
+        </div>
       </div>
     </div>
   );

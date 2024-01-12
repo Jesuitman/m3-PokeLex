@@ -8,6 +8,7 @@ function List({ onPokemonClick, selectedGeneration }) {
 
   const fetchPokemon = (generation) => {
     const generationMap = {
+      All: [1, 1025],
       Kanto: [1, 151],
       Johto: [152, 251],
       Hoenn: [252, 386],
