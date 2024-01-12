@@ -45,7 +45,7 @@ function App() {
         <header className="App-header">
           <h1>PokéLex</h1>
           <Routes>
-            {['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'].map((generation) => (
+            {['All','Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'].map((generation) => (
               <Route
                 key={generation}
                 path={`/${generation.toLowerCase()}`}
