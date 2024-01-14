@@ -10,6 +10,7 @@ import fetchKalosPokemon from "../Generations/Kalos"
 import fetchAlolaPokemon from "../Generations/Alola"
 import fetchGalarPokemon from "../Generations/Galar"
 import fetchPaldeaPokemon from "../Generations/Paldea"
+import fetchAllPokemon from "../Generations/All"
 
 function List({ onPokemonClick, selectedGeneration }) {
   const [pokemonData, setPokemonData] = useState([]);
@@ -44,6 +45,9 @@ function List({ onPokemonClick, selectedGeneration }) {
       } else if (selectedGeneration === 'Paldea') {
         const paldeaPokemon = await fetchPaldeaPokemon();
         setPokemonData(paldeaPokemon);
+      } else{
+        const allPokemon = await fetchAllPokemon()
+        setPokemonData(allPokemon)
       }
     };
     fetchData();
@@ -71,7 +75,7 @@ function List({ onPokemonClick, selectedGeneration }) {
             className="pokemon-button"
             onClick={() => handlePokemonClick(index)}
           >
-            {pokemon.sprite && <img src={pokemon.sprite} alt={`Pokemon ${index}`} />}
+            {pokemon.sprite && <img src={pokemon.sprite} alt={`Pokemon ${pokemon.name}`} />}
           </button>
         ))}
       </div>
