@@ -1,65 +1,58 @@
 import React, { useState, useEffect } from 'react';
 import './List.css';
 import PokemonCard from '../PokemonCard/PokemonCard';
+import fetchKantoPokemon from "../Generations/Kanto"
+import fetchJohtoPokemon from "../Generations/Johto"
+import fetchHoennPokemon from "../Generations/Hoenn"
+import fetchSinnohPokemon from "../Generations/Sinnoh"
+import fetchUnovaPokemon from "../Generations/Unova"
+import fetchKalosPokemon from "../Generations/Kalos"
+import fetchAlolaPokemon from "../Generations/Alola"
+import fetchGalarPokemon from "../Generations/Galar"
+import fetchPaldeaPokemon from "../Generations/Paldea"
 
 function List({ onPokemonClick, selectedGeneration }) {
   const [pokemonData, setPokemonData] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
 
-  const fetchPokemon = (generation) => {
-    const generationMap = {
-      All: [1, 1025],
-      Kanto: [1, 151],
-      Johto: [152, 251],
-      Hoenn: [252, 386],
-      Sinnoh: [387, 493],
-      Unova: [494, 649],
-      Kalos: [650, 721],
-      Alola: [722, 809],
-      Galar: [810, 905],
-      Paldea: [906, 1025]
-    };
-
-    const [start, end] = generationMap[generation];
-    const apiUrl = `https://pokeapi.co/api/v2/pokemon/?limit=${end - start + 1}&offset=${start - 1}`;
-
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then(async (data) => {
-        const promises = data.results.map(async (pokemon) => {
-          const response = await fetch(pokemon.url);
-          const pokemonDetails = await response.json();
-          return {
-            sprite: pokemonDetails.sprites.front_default,
-            name: pokemonDetails.name,
-            types: pokemonDetails.types.map((type) => type.type.name),
-            abilities: pokemonDetails.abilities.map((ability) => ({
-              name: ability.ability.name,
-              isHidden: ability.is_hidden,
-            })),
-            stats: pokemonDetails.stats.map((stat) => ({
-              name: stat.stat.name,
-              value: stat.base_stat,
-            })),
-          };
-        });
-        const pokemonDetails = await Promise.all(promises);
-        setPokemonData(pokemonDetails);
-      })
-      .catch((error) => {
-        console.error('Error fetching Pokémon data:', error);
-      });
-  };
-
   useEffect(() => {
-    fetchPokemon(selectedGeneration);
+    const fetchData = async () => {
+      if (selectedGeneration === 'Kanto') {
+        const kantoPokemon = await fetchKantoPokemon();
+        setPokemonData(kantoPokemon);
+      } else if (selectedGeneration === 'Johto') {
+        const johtoPokemon = await fetchJohtoPokemon();
+        setPokemonData(johtoPokemon);
+      } else if (selectedGeneration === 'Hoenn') {
+        const hoennPokemon = await fetchHoennPokemon();
+        setPokemonData(hoennPokemon);
+      } else if (selectedGeneration === 'Sinnoh') {
+        const sinnohPokemon = await fetchSinnohPokemon();
+        setPokemonData(sinnohPokemon);
+      } else if (selectedGeneration === 'Unova') {
+        const unovaPokemon = await fetchUnovaPokemon();
+        setPokemonData(unovaPokemon);
+      } else if (selectedGeneration === 'Kalos') {
+        const kalosPokemon = await fetchKalosPokemon();
+        setPokemonData(kalosPokemon);
+      } else if (selectedGeneration === 'Alola') {
+        const alolaPokemon = await fetchAlolaPokemon();
+        setPokemonData(alolaPokemon);
+      } else if (selectedGeneration === 'Galar') {
+        const galarPokemon = await fetchGalarPokemon();
+        setPokemonData(galarPokemon);
+      } else if (selectedGeneration === 'Paldea') {
+        const paldeaPokemon = await fetchPaldeaPokemon();
+        setPokemonData(paldeaPokemon);
+      }
+    };
+    fetchData();
   }, [selectedGeneration]);
 
   const handlePokemonClick = async (index) => {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${index + 1}/`);
-    const pokemonDetails = await response.json();
+    const pokemonDetails = pokemonData[index];
     setSelectedPokemon(pokemonDetails);
-
+  
     // Check if onPokemonClick is defined before calling it
     onPokemonClick && onPokemonClick(pokemonDetails);
   };

@@ -54,7 +54,7 @@ header {
   display: flex;
   /* flex-direction: column; */
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 20px;
   
 }
@@ -98,8 +98,14 @@ button:hover, .App-header button:hover {
   padding: 10px;
   border: .5rem solid #337cc1;
   border-radius: 3px;
-  position: fixed;
+  position: sticky;
   top: 250px; 
   right: 0px;
   z-index: 999;
+}
+
+a {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit text color from parent */
+  cursor: pointer; /* Set cursor to pointer on hover */
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // Import useState if not already imported
+import React from 'react';
 import './PokemonCard.css';
 
 function PokemonCard({ pokemon, onClose }) {
@@ -8,20 +8,28 @@ function PokemonCard({ pokemon, onClose }) {
 
   return (
     <div className="pokemon-details">
-            <button className="close-button" onClick={onClose}>
+      <button className="close-button" onClick={onClose}>
         <span role="img" aria-label="Close">&#10060;</span>
       </button>
       <div className="sprite-container">
-        <img src={pokemon.sprites.front_default} alt={pokemon.name} className="pokemon-sprite" />
+        {pokemon.sprite && <img src={pokemon.sprite} alt={pokemon.name} className="pokemon-sprite" />}
       </div>
       <h2>{capitalizeFirstLetter(pokemon.name)}</h2>
-      <p>Type: {pokemon.types.map((type) => capitalizeFirstLetter(type.type.name)).join(', ')}</p>
+      <p>Type: {pokemon.types.map((type) => capitalizeFirstLetter(type)).join(', ')}</p>
       <p>Abilities:</p>
       <ul>
-        {pokemon.abilities.map((ability, index) => (<li key={index}>{capitalizeFirstLetter(ability.ability.name)} {ability.is_hidden && '(Hidden)'}</li>))}
+        {pokemon.abilities.map((ability, index) => (
+          <li key={index}>
+            {capitalizeFirstLetter(ability.name)} {ability.isHidden && '(Hidden)'}
+          </li>
+        ))}
       </ul>
       <ul>
-        {pokemon.stats.map((stat, index) => (<li key={index}>{capitalizeFirstLetter(stat.stat.name)}: {stat.base_stat}</li>))}
+        {pokemon.stats.map((stat, index) => (
+          <li key={index}>
+            {capitalizeFirstLetter(stat.name)}: {stat.value}
+          </li>
+        ))}
       </ul>
     </div>
   );
