@@ -1,5 +1,5 @@
 import React from 'react';
-import './TeamManager.css'; // Create a CSS file for styling
+import './TeamManager.css';
 
 function TeamManager({ exportedTeam }) {
   return (

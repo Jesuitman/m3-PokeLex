@@ -45,7 +45,7 @@ function List({ onPokemonClick, selectedGeneration }) {
       } else if (selectedGeneration === 'Paldea') {
         const paldeaPokemon = await fetchPaldeaPokemon();
         setPokemonData(paldeaPokemon);
-      } else{
+      } else {
         const allPokemon = await fetchAllPokemon()
         setPokemonData(allPokemon)
       }
@@ -56,7 +56,7 @@ function List({ onPokemonClick, selectedGeneration }) {
   const handlePokemonClick = async (index) => {
     const pokemonDetails = pokemonData[index];
     setSelectedPokemon(pokemonDetails);
-  
+
     // Check if onPokemonClick is defined before calling it
     onPokemonClick && onPokemonClick(pokemonDetails);
   };
@@ -68,6 +68,10 @@ function List({ onPokemonClick, selectedGeneration }) {
 
   return (
     <div className="list-container">
+      {pokemonData.length === 0 && (
+        <div className="loading-message">
+          Compiling the PokeLex, just a moment...
+        </div>)}
       <div className="pokemon-grid">
         {pokemonData.map((pokemon, index) => (
           <button

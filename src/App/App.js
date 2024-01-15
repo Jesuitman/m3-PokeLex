@@ -13,7 +13,7 @@ function App() {
   const [selectedGeneration, setSelectedGeneration] = useState('All');
   const [exportedTeam, setExportedTeam] = useState([]);
   const [teamLinkClicked, setTeamLinkClicked] = useState(false);
-  const generations = ['All', 'Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'];
+  const generations = ['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'];
 
   const handlePokemonClick = (pokemonDetails) => {
     setSelectedPokemon(pokemonDetails);
@@ -26,9 +26,8 @@ function App() {
       if (emptySlotIndex !== -1) {
         updatedTeam[emptySlotIndex] = selectedPokemon;
         setTeam(updatedTeam);
-        console.log(updatedTeam);
       } else {
-        console.log('Your team is full. Remove a Pokemon to add a new one.');
+        alert('Your team is full. Remove a Pokemon to add a new one.');
       }
     }
   };
@@ -41,11 +40,6 @@ function App() {
 
   const handleGenerationChange = (generation) => {
     setSelectedGeneration(generation);
-  };
-
-  const handleHomeClick = () => {
-    handleGenerationChange('All');
-    setTeamLinkClicked(false);
   };
 
   const exportTeam = () => {
@@ -65,7 +59,6 @@ function App() {
   };
 
   function TeamManagerPage() {
-    // This component will display the TeamManager content
     return (
       <div>
         <TeamManager exportedTeam={exportedTeam}/>
@@ -76,37 +69,34 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header className="App-header">
-          <Link to="/">Home</Link>
-          <Link to="/teams">Teams</Link>
-          <h1>PokéLex</h1>
+      <header className="App-header">
+          <Link to="/teams" className='gen-button'>Teams</Link>
+          <Link to="/" onClick={() => handleGenerationChange('All')}> <h1>PokéLex</h1></Link>
           {generations.map((generation) => (
-            <Link
-              key={generation}
-              to={`/${generation.toLowerCase()}`}
-              className='gen-button'
-              onClick={() => handleGenerationChange(generation)}
-            >
+            <Link key={generation} to={`/${generation.toLowerCase()}`} className='gen-button' onClick={() => handleGenerationChange(generation)}>
               {generation}
             </Link>
           ))}
         </header>
         <div className="main-container">
           <Routes>
-            <Route
-              path="/"
-              element={
-                <div className='main-container'>
-                  <List onPokemonClick={handlePokemonClick} selectedGeneration={selectedGeneration} />
-                  <div className='team-container'>
-                    <button className='gen-button' onClick={() => handleAddToTeam(selectedPokemon)}>Add to Team</button>
-                    <TeamDisplay team={team} handleRemoveFromTeam={handleRemoveFromTeam} exportTeam={exportTeam} />
-                  </div>
-                </div>
-              }
-            />
             <Route path="/teams" element={<TeamManagerPage />} />
+            <Route path="/" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="All" />} />
+            <Route path="/kanto" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Kanto" />} />
+            <Route path="/johto" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Johto" />} />
+            <Route path="/hoenn" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Hoenn" />} />
+            <Route path="/sinnoh" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Sinnoh" />} />
+            <Route path="/unova" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Unova" />} />
+            <Route path="/kalos" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Kalos" />} />
+            <Route path="/alola" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Alola" />} />
+            <Route path="/galar" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Galar" />} />
+            <Route path="/paldea" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Paldea" />} />
+            <Route path="/*" element={<Navigate to="/" />} />
           </Routes>
+          <div className='team-container'>
+            <button className='gen-button' onClick={() => handleAddToTeam(selectedPokemon)}>Add to Team</button>
+            <TeamDisplay team={team} handleRemoveFromTeam={handleRemoveFromTeam} exportTeam={exportTeam} />
+          </div>
         </div>
       </div>
     </Router>
