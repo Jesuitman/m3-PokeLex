@@ -1,5 +1,7 @@
 import React from 'react';
 import './PokemonCard.css';
+import PropTypes from 'prop-types'
+
 
 function PokemonCard({ pokemon, onClose }) {
   const capitalizeFirstLetter = (str) => {
@@ -36,3 +38,24 @@ function PokemonCard({ pokemon, onClose }) {
 }
 
 export default PokemonCard;
+
+PokemonCard.propTypes = {
+  pokemon: PropTypes.shape({
+    sprite: PropTypes.string,
+    name: PropTypes.string,
+    types: PropTypes.arrayOf(PropTypes.string),
+    abilities: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        isHidden: PropTypes.bool,
+      })
+    ),
+    stats: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        value: PropTypes.number,
+      })
+    ),
+  }).isRequired,
+  onClose: PropTypes.func,
+};

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Link, Routes, Navigate } from 'react-router-dom';
+import PropTypes from 'prop-types'
 import './App.css';
 import '../styles.css'; // Import the CSS file
 import List from '../List/List';
-import PokemonCard from '../PokemonCard/PokemonCard';
 import TeamDisplay from '../TeamDisplay/TeamDisplay';
 import TeamManager from '../TeamManager/TeamManager';
 
@@ -12,7 +12,6 @@ function App() {
   const [team, setTeam] = useState(Array(6).fill(null));
   const [selectedGeneration, setSelectedGeneration] = useState('All');
   const [exportedTeam, setExportedTeam] = useState([]);
-  const [teamLinkClicked, setTeamLinkClicked] = useState(false);
   const generations = ['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'];
 
   const handlePokemonClick = (pokemonDetails) => {
@@ -105,6 +104,15 @@ function App() {
 }
 
 export default App;
+
+App.propTypes = {
+  selectedPokemon: PropTypes.object,
+  team: PropTypes.array,
+  selectedGeneration: PropTypes.string,
+  exportedTeam: PropTypes.array,
+  onPokemonClick: PropTypes.func,
+  handleGenerationChange: PropTypes.func,
+};
 
 
 // make it so you clearyour team when you export it and an optiuon to clear whole team

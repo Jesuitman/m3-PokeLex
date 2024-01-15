@@ -1,5 +1,7 @@
 import React from 'react';
 import "./TeamDisplay.css";
+import PropTypes from 'prop-types'
+
 
 function TeamDisplay({ team, handleRemoveFromTeam,exportTeam }) {
 
@@ -26,3 +28,10 @@ function TeamDisplay({ team, handleRemoveFromTeam,exportTeam }) {
 }
 
 export default TeamDisplay;
+
+
+TeamDisplay.propTypes = {
+  team: PropTypes.array,
+  handleRemoveFromTeam: PropTypes.func,
+  exportTeam: PropTypes.func,
+};

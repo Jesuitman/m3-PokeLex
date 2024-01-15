@@ -11,6 +11,7 @@ import fetchAlolaPokemon from "../Generations/Alola"
 import fetchGalarPokemon from "../Generations/Galar"
 import fetchPaldeaPokemon from "../Generations/Paldea"
 import fetchAllPokemon from "../Generations/All"
+import PropTypes from 'prop-types'
 
 function List({ onPokemonClick, selectedGeneration }) {
   const [pokemonData, setPokemonData] = useState([]);
@@ -69,9 +70,10 @@ function List({ onPokemonClick, selectedGeneration }) {
   return (
     <div className="list-container">
       {pokemonData.length === 0 && (
-        <div className="loading-message">
+        <div className="list-container">
           Compiling the PokeLex, just a moment...
         </div>)}
+        <div className='list-container'>
       <div className="pokemon-grid">
         {pokemonData.map((pokemon, index) => (
           <button
@@ -83,6 +85,7 @@ function List({ onPokemonClick, selectedGeneration }) {
           </button>
         ))}
       </div>
+      </div>
       {selectedPokemon && (
         <div className="pokemon-details">
           <PokemonCard pokemon={selectedPokemon} onClose={handleCloseCard} />
@@ -93,3 +96,8 @@ function List({ onPokemonClick, selectedGeneration }) {
 }
 
 export default List;
+
+List.propTypes = {
+  onPokemonClick: PropTypes.func,
+  selectedGeneration: PropTypes.string,
+};
