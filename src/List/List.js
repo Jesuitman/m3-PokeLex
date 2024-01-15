@@ -1,40 +1,67 @@
 import React, { useState, useEffect } from 'react';
-import './List.css'; // Import your CSS file
+import './List.css';
 import PokemonCard from '../PokemonCard/PokemonCard';
+import fetchKantoPokemon from "../Generations/Kanto"
+import fetchJohtoPokemon from "../Generations/Johto"
+import fetchHoennPokemon from "../Generations/Hoenn"
+import fetchSinnohPokemon from "../Generations/Sinnoh"
+import fetchUnovaPokemon from "../Generations/Unova"
+import fetchKalosPokemon from "../Generations/Kalos"
+import fetchAlolaPokemon from "../Generations/Alola"
+import fetchGalarPokemon from "../Generations/Galar"
+import fetchPaldeaPokemon from "../Generations/Paldea"
+import fetchAllPokemon from "../Generations/All"
+import PropTypes from 'prop-types'
 
-function List({ onPokemonClick }) {
+function List({ onPokemonClick, selectedGeneration }) {
   const [pokemonData, setPokemonData] = useState([]);
-  const [selectedPokemon, setSelectedPokemon    ] = useState(null);
-
-  const fetchAllPokemon = () => {
-    fetch('https://pokeapi.co/api/v2/pokemon/?limit=1025')
-      .then((response) => response.json())
-      .then(async (data) => {
-        const promises = data.results.map(async (pokemon) => {
-          const response = await fetch(pokemon.url);
-          const pokemonDetails = await response.json();
-          return {
-            sprite: pokemonDetails.sprites.front_default,
-          };
-        });
-        const pokemonDetails = await Promise.all(promises);
-        setPokemonData(pokemonDetails);
-      })
-      .catch((error) => {
-        console.error('Error fetching Pokémon data:', error);
-      });
-  };
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
 
   useEffect(() => {
-    fetchAllPokemon();
-  }, []);
+    const fetchData = async () => {
+      if (selectedGeneration === 'Kanto') {
+        const kantoPokemon = await fetchKantoPokemon();
+        setPokemonData(kantoPokemon);
+      } else if (selectedGeneration === 'Johto') {
+        const johtoPokemon = await fetchJohtoPokemon();
+        setPokemonData(johtoPokemon);
+      } else if (selectedGeneration === 'Hoenn') {
+        const hoennPokemon = await fetchHoennPokemon();
+        setPokemonData(hoennPokemon);
+      } else if (selectedGeneration === 'Sinnoh') {
+        const sinnohPokemon = await fetchSinnohPokemon();
+        setPokemonData(sinnohPokemon);
+      } else if (selectedGeneration === 'Unova') {
+        const unovaPokemon = await fetchUnovaPokemon();
+        setPokemonData(unovaPokemon);
+      } else if (selectedGeneration === 'Kalos') {
+        const kalosPokemon = await fetchKalosPokemon();
+        setPokemonData(kalosPokemon);
+      } else if (selectedGeneration === 'Alola') {
+        const alolaPokemon = await fetchAlolaPokemon();
+        setPokemonData(alolaPokemon);
+      } else if (selectedGeneration === 'Galar') {
+        const galarPokemon = await fetchGalarPokemon();
+        setPokemonData(galarPokemon);
+      } else if (selectedGeneration === 'Paldea') {
+        const paldeaPokemon = await fetchPaldeaPokemon();
+        setPokemonData(paldeaPokemon);
+      } else {
+        const allPokemon = await fetchAllPokemon()
+        setPokemonData(allPokemon)
+      }
+    };
+    fetchData();
+  }, [selectedGeneration]);
 
   const handlePokemonClick = async (index) => {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${index + 1}/`);
-    const pokemonDetails = await response.json();
+    const pokemonDetails = pokemonData[index];
     setSelectedPokemon(pokemonDetails);
-    onPokemonClick(pokemonDetails); // Pass the selected Pokemon details to the App component
+
+    // Check if onPokemonClick is defined before calling it
+    onPokemonClick && onPokemonClick(pokemonDetails);
   };
+
 
   const handleCloseCard = () => {
     setSelectedPokemon(null);
@@ -42,16 +69,22 @@ function List({ onPokemonClick }) {
 
   return (
     <div className="list-container">
+      {pokemonData.length === 0 && (
+        <div className="list-container">
+          Compiling the PokeLex, just a moment...
+        </div>)}
+        <div className='list-container'>
       <div className="pokemon-grid">
         {pokemonData.map((pokemon, index) => (
-          <button  
+          <button
             key={index}
             className="pokemon-button"
             onClick={() => handlePokemonClick(index)}
           >
-            {pokemon.sprite && <img src={pokemon.sprite} alt={`Pokemon ${index}`} />}
+            {pokemon.sprite && <img src={pokemon.sprite} alt={`Pokemon ${pokemon.name}`} />}
           </button>
         ))}
+      </div>
       </div>
       {selectedPokemon && (
         <div className="pokemon-details">
@@ -63,3 +96,8 @@ function List({ onPokemonClick }) {
 }
 
 export default List;
+
+List.propTypes = {
+  onPokemonClick: PropTypes.func,
+  selectedGeneration: PropTypes.string,
+};

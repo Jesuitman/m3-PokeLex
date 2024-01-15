@@ -1,7 +1,10 @@
 import React from 'react';
-import "./TeamDisplay.css"
+import "./TeamDisplay.css";
+import PropTypes from 'prop-types'
 
-function TeamDisplay({ team, handleRemoveFromTeam }) {
+
+function TeamDisplay({ team, handleRemoveFromTeam,exportTeam }) {
+
   return (
     <div className="team-section">
       <h2>Your team so far...</h2>
@@ -10,8 +13,8 @@ function TeamDisplay({ team, handleRemoveFromTeam }) {
           <div key={index} className="team-member">
             {member ? (
               <>
-                <img src={member.sprites.front_default} alt={member.name} className="team-member-sprite" />
-                <button onClick={() => handleRemoveFromTeam(index)}>Remove</button>
+                <img src={member.sprite} alt={member.name} className="team-member-sprite" />
+                <button className='gen-button' onClick={() => handleRemoveFromTeam(index)}>Remove</button>
               </>
             ) : (
               <p>Empty</p>
@@ -19,8 +22,16 @@ function TeamDisplay({ team, handleRemoveFromTeam }) {
           </div>
         ))}
       </div>
+      <button className='gen-button' onClick={exportTeam}>Export Team</button>
     </div>
   );
 }
 
 export default TeamDisplay;
+
+
+TeamDisplay.propTypes = {
+  team: PropTypes.array,
+  handleRemoveFromTeam: PropTypes.func,
+  exportTeam: PropTypes.func,
+};

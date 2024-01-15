@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'PokemonFont';
+    src: url("./fonts/PokemonGb-RAeo.ttf") format('truetype');
+    /* Add more font formats (e.g., woff, woff2) for cross-browser compatibility */
+  }
+  
+  body,button {
+    font-family: 'PokemonFont', sans-serif; /* Use the font-family name specified in @font-face */
+  }

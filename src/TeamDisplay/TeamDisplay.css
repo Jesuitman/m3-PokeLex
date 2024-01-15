@@ -10,14 +10,14 @@
   }
   
   .team-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Set 3 columns */
+    grid-template-rows: repeat(2, auto); /* Set 2 rows */
+    /* gap: 20px; */
     justify-content: center;
   }
   
   .team-member {
-    width: calc(33.33% - 20px); /* Adjust the width of each box */
-    /* margin: 10px; */
     position: relative;
   }
   
@@ -26,10 +26,11 @@
     font-size: 14px;
     padding: 10px;
     border: 1px solid transparent;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
   }
   
-  .team-member p:hover {
+  .team-member p:hover,
+  .team-member-sprite:hover {
     border: 1px solid #000; /* Change border color on hover */
     cursor: pointer;
   }
@@ -40,3 +41,4 @@
     display: block;
     margin: 0 auto;
   }
+

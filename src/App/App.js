@@ -1,31 +1,32 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Link, Routes, Navigate } from 'react-router-dom';
+import PropTypes from 'prop-types'
 import './App.css';
+import '../styles.css'; // Import the CSS file
 import List from '../List/List';
-import PokemonCard from '../PokemonCard/PokemonCard';
-import TeamDisplay from '../TeamDisplay/TeamDisplay'; // Import the TeamDisplay component
+import TeamDisplay from '../TeamDisplay/TeamDisplay';
+import TeamManager from '../TeamManager/TeamManager';
 
 function App() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [team, setTeam] = useState(Array(6).fill(null));
+  const [selectedGeneration, setSelectedGeneration] = useState('All');
+  const [exportedTeam, setExportedTeam] = useState([]);
+  const generations = ['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'];
 
   const handlePokemonClick = (pokemonDetails) => {
     setSelectedPokemon(pokemonDetails);
   };
 
-  const handleCloseCard = () => {
-    setSelectedPokemon(null);
-  };
-
-  const handleAddToTeam = () => {
+  const handleAddToTeam = (selectedPokemon) => {
     if (selectedPokemon) {
       const updatedTeam = [...team];
-      const emptySlotIndex = updatedTeam.findIndex(pokemon => pokemon === null);
+      const emptySlotIndex = updatedTeam.findIndex((p) => p === null);
       if (emptySlotIndex !== -1) {
         updatedTeam[emptySlotIndex] = selectedPokemon;
         setTeam(updatedTeam);
-        console.log(team)
       } else {
-        console.log("Your team is full. Remove a Pokemon to add a new one.");
+        alert('Your team is full. Remove a Pokemon to add a new one.');
       }
     }
   };
@@ -36,32 +37,84 @@ function App() {
     setTeam(updatedTeam);
   };
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>PokéLex</h1>
-        <button className='gen-button'>Kanto</button>
-        <button className='gen-button'>Johto</button>
-        <button className='gen-button'>Hoenn</button>
-        <button className='gen-button'>Sinnoh</button>
-        <button className='gen-button'>Unova</button>
-        <button className='gen-button'>Kalos</button>
-        <button className='gen-button'>Alola</button>
-        <button className='gen-button'>Galar</button>
-        <button className='gen-button'>Paldea</button>
-      </header>
-      <div className="main-container">
-        <div className="pokemon-details">
-          {selectedPokemon && (
-            <PokemonCard pokemon={selectedPokemon} onClose={handleCloseCard} handleAddToTeam={() => handleAddToTeam(selectedPokemon)} /> )}
-        </div>
-        <div className="list-container">
-          <List onPokemonClick={handlePokemonClick} />
-        </div>
-        <TeamDisplay team={team} handleRemoveFromTeam={handleRemoveFromTeam} />
+  const handleGenerationChange = (generation) => {
+    setSelectedGeneration(generation);
+  };
+
+  const exportTeam = () => {
+    const nullPositions = team.filter(member => member === null).length;
+    
+    if (nullPositions > 0) {
+      const confirmExport = window.confirm(`You still have ${nullPositions} empty spaces on your team. Are you sure you want to export?`);
+      
+      if (!confirmExport) {
+        return;
+      }
+    }
+
+    const exported = team.filter(member => member !== null);
+    setExportedTeam(exported);
+    alert("Team exported!");
+  };
+
+  function TeamManagerPage() {
+    return (
+      <div>
+        <TeamManager exportedTeam={exportedTeam}/>
       </div>
-    </div>
+    );
+  }
+
+  return (
+    <Router>
+      <div className="App">
+      <header className="App-header">
+          <Link to="/teams" className='gen-button'>Teams</Link>
+          <Link to="/" onClick={() => handleGenerationChange('All')}> <h1>PokéLex</h1></Link>
+          {generations.map((generation) => (
+            <Link key={generation} to={`/${generation.toLowerCase()}`} className='gen-button' onClick={() => handleGenerationChange(generation)}>
+              {generation}
+            </Link>
+          ))}
+        </header>
+        <div className="main-container">
+          <Routes>
+            <Route path="/teams" element={<TeamManagerPage />} />
+            <Route path="/" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="All" />} />
+            <Route path="/kanto" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Kanto" />} />
+            <Route path="/johto" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Johto" />} />
+            <Route path="/hoenn" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Hoenn" />} />
+            <Route path="/sinnoh" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Sinnoh" />} />
+            <Route path="/unova" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Unova" />} />
+            <Route path="/kalos" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Kalos" />} />
+            <Route path="/alola" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Alola" />} />
+            <Route path="/galar" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Galar" />} />
+            <Route path="/paldea" element={<List onPokemonClick={handlePokemonClick} selectedGeneration="Paldea" />} />
+            <Route path="/*" element={<Navigate to="/" />} />
+          </Routes>
+          <div className='team-container'>
+            <button className='gen-button' onClick={() => handleAddToTeam(selectedPokemon)}>Add to Team</button>
+            <TeamDisplay team={team} handleRemoveFromTeam={handleRemoveFromTeam} exportTeam={exportTeam} />
+          </div>
+        </div>
+      </div>
+    </Router>
   );
+  
 }
 
 export default App;
+
+App.propTypes = {
+  selectedPokemon: PropTypes.object,
+  team: PropTypes.array,
+  selectedGeneration: PropTypes.string,
+  exportedTeam: PropTypes.array,
+  onPokemonClick: PropTypes.func,
+  handleGenerationChange: PropTypes.func,
+};
+
+
+// make it so you clearyour team when you export it and an optiuon to clear whole team
+
+//hamburger menu with create custom team and creat team buttons
