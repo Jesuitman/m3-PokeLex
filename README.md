@@ -80,3 +80,10 @@ I would like to implement the following features
 9. Repeat steps 4 through 7
 
 ## 👩‍💻 User Test Results/Observations
+
+- User thinks the header bar should scroll with user to make it easier to navigate to team when exporting
+- User wants to be able to remove pokemon purely from teams view and to not see the team display window. Says an X on the teammate card could be used to remove the pokemon from your team
+- User wants ability to create more than one team with the ability name the teams as well
+- User wants an on hover window each generation button that displays the generation number as well as the games associated with each generation
+- User would like to see acquisition methods for each pokemon in each generation. This could be implemented in a `see-more` link for the pokemon?
+- User also wants to see evolution methods for each pokemon
