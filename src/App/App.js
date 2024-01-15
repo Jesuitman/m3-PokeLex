@@ -113,8 +113,3 @@ App.propTypes = {
   onPokemonClick: PropTypes.func,
   handleGenerationChange: PropTypes.func,
 };
-
-
-// make it so you clearyour team when you export it and an optiuon to clear whole team
-
-//hamburger menu with create custom team and creat team buttons
