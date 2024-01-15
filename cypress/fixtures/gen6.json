@@ -1,0 +1,15 @@
+{
+    "count": 1302,
+    "next": "https://pokeapi.co/api/v2/pokemon/?offset=721&limit=72",
+    "previous": "https://pokeapi.co/api/v2/pokemon/?offset=577&limit=72",
+    "results": [
+      {
+        "name": "chespin",
+        "url": "https://pokeapi.co/api/v2/pokemon/650/"
+      },
+      {
+        "name": "volcanion",
+        "url": "https://pokeapi.co/api/v2/pokemon/721/"
+      }
+    ]
+  }

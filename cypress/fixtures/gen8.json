@@ -1,0 +1,15 @@
+{
+    "count": 1302,
+    "next": "https://pokeapi.co/api/v2/pokemon/?offset=905&limit=96",
+    "previous": "https://pokeapi.co/api/v2/pokemon/?offset=713&limit=96",
+    "results": [
+      {
+        "name": "grookey",
+        "url": "https://pokeapi.co/api/v2/pokemon/810/"
+      },
+      {
+        "name": "enamorus-incarnate",
+        "url": "https://pokeapi.co/api/v2/pokemon/905/"
+      }
+    ]
+  }

@@ -1,0 +1,15 @@
+{
+    "count": 1302,
+    "next": "https://pokeapi.co/api/v2/pokemon/?offset=809&limit=88",
+    "previous": "https://pokeapi.co/api/v2/pokemon/?offset=633&limit=88",
+    "results": [
+      {
+        "name": "rowlet",
+        "url": "https://pokeapi.co/api/v2/pokemon/722/"
+      },
+      {
+        "name": "melmetal",
+        "url": "https://pokeapi.co/api/v2/pokemon/809/"
+      }
+    ]
+  }

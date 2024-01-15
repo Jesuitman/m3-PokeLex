@@ -1,0 +1,15 @@
+{
+    "count": 1302,
+    "next": "https://pokeapi.co/api/v2/pokemon/?offset=493&limit=107",
+    "previous": "https://pokeapi.co/api/v2/pokemon/?offset=279&limit=107",
+    "results": [
+      {
+        "name": "turtwig",
+        "url": "https://pokeapi.co/api/v2/pokemon/387/"
+      },
+      {
+        "name": "arceus",
+        "url": "https://pokeapi.co/api/v2/pokemon/493/"
+      }
+    ]
+  }

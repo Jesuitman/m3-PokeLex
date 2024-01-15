@@ -1,0 +1,15 @@
+{
+    "count": 1302,
+    "next": "https://pokeapi.co/api/v2/pokemon/?offset=386&limit=135",
+    "previous": "https://pokeapi.co/api/v2/pokemon/?offset=116&limit=135",
+    "results": [
+      {
+        "name": "treecko",
+        "url": "https://pokeapi.co/api/v2/pokemon/252/"
+      },
+      {
+        "name": "deoxys-normal",
+        "url": "https://pokeapi.co/api/v2/pokemon/386/"
+      }
+    ]
+  }
