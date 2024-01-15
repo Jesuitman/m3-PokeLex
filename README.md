@@ -60,12 +60,13 @@ I would like to implement the following features
 - Allow the user to select abilities
 - Change the font to flip between the main font used for the generations on each generation button as well as the theme music
 - Allow the user to select a held item for each of their pokemon
-- A `generate team`` button that will generate a team for the user based on a form. It would have options for generation locks as well as type locks. More options i nthis form based on user feedback
+- A `generate team` button that will generate a team for the user based on a form. It would have options for generation locks as well as type locks. More options i nthis form based on user feedback
 - Allow the user to story several teams as well as name them
 - Give the user to wipe out the team they have selected when they export
 - Hamburger menu for holding the team view, generate team form, and each generation button
 - Hover states to replace the hardcoded pokemon card component so that it only appears when the user hovers over a pokemon, clicking it would then add it to the team
 - An analyze team button that will tell you all of you teams weaknesses and strengths 
+- Shiny dex 
 
 ## ✋ User Test Instructions 
 1. Start the app on the deploy link

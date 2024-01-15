@@ -1,0 +1,15 @@
+{
+    "count": 1302,
+    "next": "https://pokeapi.co/api/v2/pokemon/?offset=251&limit=100",
+    "previous": "https://pokeapi.co/api/v2/pokemon/?offset=51&limit=100",
+    "results": [
+      {
+        "name": "chikorita",
+        "url": "https://pokeapi.co/api/v2/pokemon/152/"
+      },
+      {
+        "name": "celebi",
+        "url": "https://pokeapi.co/api/v2/pokemon/251/"
+      }
+    ]
+  }

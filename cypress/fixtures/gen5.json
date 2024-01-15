@@ -1,0 +1,15 @@
+{
+    "count": 1302,
+    "next": "https://pokeapi.co/api/v2/pokemon/?offset=649&limit=156",
+    "previous": "https://pokeapi.co/api/v2/pokemon/?offset=337&limit=156",
+    "results": [
+      {
+        "name": "victini",
+        "url": "https://pokeapi.co/api/v2/pokemon/494/"
+      },
+      {
+        "name": "genesect",
+        "url": "https://pokeapi.co/api/v2/pokemon/649/"
+      }
+    ]
+  }
