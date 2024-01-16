@@ -17,7 +17,7 @@ This project was a showcase of all of my abilities up to this point during my ti
 https://m3-poke-lex.vercel.app/
 
 ## 📷 Preview of App
-![sample video of the project](https://github.com/Jesuitman/m3-rancid-tomatillos/blob/main/ezgif-1-a2537a03b6.gif?raw=true)
+![pokelex](https://github.com/Jesuitman/m3-PokeLex/assets/139895703/92a8ca87-940e-463d-8fbe-8f935d595eb6)
 
 ## 🍎 Context
 I was given a very short time frame to develop this App which gave me a good amount of experience in working with a strict sprint. I hit the ground running every day and struggled a lot with remembering self care, I am very thankful burnout did not set in, but I thin ktaht is primarily because I was having so much fun while making this App!. 
