@@ -90,6 +90,13 @@ a {
   cursor: pointer; 
 }
 
+.header-buttons {
+  display: flex;
+  justify-content: space-around; /* or any other preferred layout */
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+}
 @media screen and (max-width: 699px) {
   .main-container {
     flex-direction: column; 
@@ -104,10 +111,17 @@ a {
   .list-container {
     max-width: 100%; 
   }
+
+  header {
+    grid-template-columns: repeat(3, 1fr) /* Set width to 100% for 4 rows of 2 buttons */
+  }
 }
 
 @media screen and (max-width: 1449px) and (min-width: 700px) {
     .pokemon-grid {
     grid-template-columns: repeat(3, 1fr); 
   }
+
+ header {
+    grid-template-columns: repeat(2, 1fr); /* Set 2 columns for smaller screens */  }
 }
