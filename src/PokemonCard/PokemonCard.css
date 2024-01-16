@@ -7,6 +7,8 @@
     border: .5rem solid #337cc1;
     border-radius: 5px;
     z-index: 999; /* Ensure it's above other elements */
+    width: 300px;
+    
   }
 
   .close-button {
@@ -19,3 +21,12 @@
     font-size: 20px;
     color: red;
   }
+
+  @media screen and (max-width: 699px) {
+    .pokemon-details {
+      position: relative;
+      top: auto;
+      left: auto;
+      /* width: 100%; */
+  }
+}

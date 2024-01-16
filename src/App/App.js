@@ -71,11 +71,14 @@ function App() {
       <header className="App-header">
           <Link to="/teams" className='gen-button'>Teams</Link>
           <Link to="/" onClick={() => handleGenerationChange('All')}> <h1>PokéLex</h1></Link>
+          <div className="header-buttons">
           {generations.map((generation) => (
             <Link key={generation} to={`/${generation.toLowerCase()}`} className='gen-button' onClick={() => handleGenerationChange(generation)}>
               {generation}
             </Link>
+            
           ))}
+          </div>
         </header>
         <div className="main-container">
           <Routes>
